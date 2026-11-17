@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "repoType": "unknown",
+  "mode": "baseline",
+  "baselineCommit": null,
+  "reviewedHead": null,
+  "references": [],
+  "reproducibility": {
+    "prerequisites": [],
+    "install": {
+      "command": "",
+      "status": "unknown",
+      "evidence": "",
+      "reason": ""
+    },
+    "test": {
+      "command": "",
+      "status": "unknown",
+      "evidence": "",
+      "reason": ""
+    }
+  },
+  "ci": {
+    "workflows": [
+      ".github/workflows/ci.yml",
+      ".github/workflows/codeql.yml"
+    ],
+    "remote": "unverified",
+    "runUrl": "",
+    "runSha": ""
+  },
+  "license": {
+    "status": "present",
+    "file": "LICENSE",
+    "attribution": []
+  },
+  "privacy": {
+    "gaps": []
+  },
+  "diffReview": null,
+  "readiness": {
+    "verified": [],
+    "unverified": [],
+    "blocked": []
+  }
+}
