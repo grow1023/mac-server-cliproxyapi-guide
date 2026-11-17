@@ -74,7 +74,7 @@ out="$(python3 scripts/write-config.py examples/config.server.yaml "$TMP/out.con
 if [ "$rc" -ne 0 ]; then bad write-config "exit $rc: $out"
 elif case "$out" in *"$k1"*|*"$k2"*) true;; *) false;; esac; then bad write-config "key printed"
 elif grep -q '<client-' "$TMP/out.conf" || ! grep -q "$k1" "$TMP/out.conf" || ! grep -q '^  host: "127.0.0.1"' "$TMP/out.conf"; then bad write-config "placeholders or host not replaced"
-elif [ "$(stat -f %Lp "$TMP/out.conf" 2>/dev/null || stat -c %a "$TMP/out.conf")" != 600 ]; then bad write-config "config mode is not 600"
+elif [ "$(python3 -c 'import os,sys; print(oct(os.stat(sys.argv[1]).st_mode & 0o777)[2:])' "$TMP/out.conf")" != 600 ]; then bad write-config "config mode is not 600"
 else ok write-config; fi
 python3 scripts/write-config.py examples/config.server.yaml "$TMP/x.conf" 0.0.0.0 "$KD" >/dev/null 2>&1; [ $? -eq 2 ] && ok write-config.host || bad write-config.host "public host must exit 2"
 rm "$KD/client-2.key"
