@@ -3,7 +3,7 @@
   "repoType": "docs",
   "mode": "update",
   "baselineCommit": "38678947eafe4d307a556fdf6e979fe81d43a106",
-  "reviewedHead": "083a440ba7bcb6629cbad00892d86416934819d7",
+  "reviewedHead": "35c870410cfc029a862b079d6864cc9775aef2da",
   "references": [
     {
       "repo": "router-for-me/CLIProxyAPI",
@@ -59,7 +59,7 @@
     "test": {
       "command": "bash tests/run.sh",
       "status": "verified",
-      "evidence": "local run 2026-11-17 on commit 083a440: ALL TESTS PASSED, exit 0, incl. write-config (key non-disclosure for both keys, host allowlist, missing key) and handoff wiring; fault injection (key printed, README link removed) produced FAIL lines",
+      "evidence": "local run 2026-11-17 on commit 35c8704: ALL TESTS PASSED, exit 0, incl. write-config (key non-disclosure for both keys, host allowlist, missing key) and handoff wiring; fault injection (key printed, README link removed) produced FAIL lines",
       "reason": ""
     },
     "guide-procedure": {
@@ -104,7 +104,7 @@
       "scripts/write-config.py",
       "tests/run.sh"
     ],
-    "summary": "Adds AGENTS.md (agent procedure, HUMAN stop points for sudo, OAuth sign-in, System Settings and Tailscale), CLAUDE.md importing it, scripts/write-config.py (fills keys from mode-600 files without printing, host allowlist), a handoff section with copy-paste prompts in all four READMEs, and tests for these. Not checked: a full Claude Code or Codex session running the procedure end to end."
+    "summary": "Adds AGENTS.md (agent procedure, HUMAN stop points for sudo, OAuth sign-in, System Settings and Tailscale), CLAUDE.md importing it, scripts/write-config.py (fills keys from mode-600 files without printing, host allowlist), a handoff section with copy-paste prompts in all four READMEs, and tests for these. Not checked: a full Claude Code or Codex session running the procedure end to end. Follow-up: the file-mode test now uses Python os.stat, because GNU stat -f broke the check on Linux CI."
   },
   "readiness": {
     "verified": [
