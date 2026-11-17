@@ -29,6 +29,31 @@ PROXY_URL=http://127.0.0.1:8317 PROXY_KEY=<client-key> ./scripts/check-proxy.sh
 
 점검 결과로 상태 확인, 키 없는 요청 거부, 모델 목록에 각각 PASS가 출력되고 마지막에 ALL CHECKS PASSED가 출력됩니다.
 
+## Claude Code·Codex에 맡기기
+
+[AGENTS.md](AGENTS.md)는 이 가이드를 코딩 에이전트용 절차로 옮긴 파일입니다. Codex는 이 파일을 바로 읽고, Claude Code는 CLAUDE.md를 거쳐 읽습니다. 에이전트는 먼저 역할과 접속 방식을 묻고, 사람만 할 수 있는 단계(암호 입력, 브라우저 로그인, 시스템 설정)에서 멈추며, 키를 화면에 출력하지 않습니다. 이 저장소를 클론한 폴더에서 에이전트 하나를 엽니다.
+
+```sh
+git clone https://github.com/grow1023/mac-server-cliproxyapi-guide
+cd mac-server-cliproxyapi-guide
+claude    # Claude Code (CLAUDE.md -> AGENTS.md)
+codex     # Codex (AGENTS.md)
+```
+
+그다음 아래 프롬프트 중 하나를 붙여 넣습니다. 서버 Mac에서는 다음을 씁니다.
+
+```text
+AGENTS.md를 따라 이 Mac을 CLIProxyAPI 서버로 설정해 줘. 접속 방식은 먼저 나에게 물어봐. HUMAN 단계마다 멈추고 내가 끝낼 때까지 기다려. 클라이언트 키는 절대 화면에 출력하지 마. scripts/check-proxy.sh가 exit 0이어야 완료야.
+```
+
+클라이언트 컴퓨터에서는 다음을 씁니다.
+
+```text
+AGENTS.md를 따라 이 컴퓨터를 내 CLIProxyAPI 서버의 클라이언트로 연결해 줘. 서버 주소는 나에게 물어봐. 내가 말한 도구만 설정하고, 파일을 바꾸기 전에 백업해. scripts/check-proxy.sh가 exit 0이어야 완료야.
+```
+
+명령을 승인하기 전에 내용을 읽어 보십시오. 권한 확인을 건너뛰는 모드로 에이전트를 실행하지 마십시오.
+
 ## 어떻게 작동하나요
 
 가이드는 서버를 준비하는 순서를 따릅니다. 원격 접속은 3단계에서 고르는 선택 사항이며, 같은 LAN 안에서는 별도 네트워크 도구가 필요 없습니다.

@@ -29,6 +29,31 @@ PROXY_URL=http://127.0.0.1:8317 PROXY_KEY=<client-key> ./scripts/check-proxy.sh
 
 检查会对健康端点、无密钥请求被拒绝和模型列表分别输出 PASS，最后输出 ALL CHECKS PASSED。
 
+## 交给 Claude Code 或 Codex
+
+[AGENTS.md](AGENTS.md) 把本指南写成编码代理可以执行的步骤。Codex 会直接读取它，Claude Code 通过 CLAUDE.md 读取它。代理会先询问角色和访问方式，在只有你能完成的步骤（输入密码、浏览器登录、系统设置）处停下，并且不会显示密钥。在本仓库的克隆目录中打开其中一个代理：
+
+```sh
+git clone https://github.com/grow1023/mac-server-cliproxyapi-guide
+cd mac-server-cliproxyapi-guide
+claude    # Claude Code (CLAUDE.md -> AGENTS.md)
+codex     # Codex (AGENTS.md)
+```
+
+然后粘贴一条提示词。服务器 Mac 使用：
+
+```text
+按照 AGENTS.md 把这台 Mac 设置为 CLIProxyAPI 服务器。先问我使用哪种访问方式。在每个 HUMAN 步骤停下并等我完成。绝不要显示客户端密钥。只有 scripts/check-proxy.sh 以 exit 0 结束时才算完成。
+```
+
+客户端电脑使用：
+
+```text
+按照 AGENTS.md 把这台电脑作为客户端连接到我的 CLIProxyAPI 服务器。先问我服务器地址。只配置我指定的工具，修改每个文件前先备份。只有 scripts/check-proxy.sh 以 exit 0 结束时才算完成。
+```
+
+批准每条命令之前请先阅读。不要用跳过权限确认的模式启动代理。
+
 ## 工作原理
 
 指南按照搭建服务器的顺序编写。远程访问是在第 3 步中选择的可选项；在同一局域网内无需额外的网络工具。

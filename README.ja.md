@@ -29,6 +29,31 @@ PROXY_URL=http://127.0.0.1:8317 PROXY_KEY=<client-key> ./scripts/check-proxy.sh
 
 チェックはヘルスエンドポイント、キーなしリクエストの拒否、モデル一覧について PASS を表示し、最後に ALL CHECKS PASSED を表示します。
 
+## Claude Code・Codex に任せる
+
+[AGENTS.md](AGENTS.md) は、このガイドをコーディングエージェント向けの手順にしたファイルです。Codex は直接読み、Claude Code は CLAUDE.md 経由で読みます。エージェントは最初に役割と接続方法を尋ね、人にしかできない手順（パスワード入力、ブラウザでのサインイン、システム設定）で止まり、キーを画面に表示しません。このリポジトリのクローンでエージェントを 1 つ開きます。
+
+```sh
+git clone https://github.com/grow1023/mac-server-cliproxyapi-guide
+cd mac-server-cliproxyapi-guide
+claude    # Claude Code (CLAUDE.md -> AGENTS.md)
+codex     # Codex (AGENTS.md)
+```
+
+次にプロンプトを 1 つ貼り付けます。サーバー Mac では次を使います。
+
+```text
+AGENTS.md に従って、この Mac を CLIProxyAPI サーバーとして設定してください。接続方法は最初に私に聞いてください。HUMAN の手順ごとに止まり、私が終えるまで待ってください。クライアントキーは決して表示しないでください。scripts/check-proxy.sh が exit 0 になったときだけ完了です。
+```
+
+クライアントのコンピューターでは次を使います。
+
+```text
+AGENTS.md に従って、このコンピューターを私の CLIProxyAPI サーバーのクライアントとして接続してください。サーバーのアドレスは私に聞いてください。私が指定したツールだけを設定し、変更前に各ファイルをバックアップしてください。scripts/check-proxy.sh が exit 0 になったときだけ完了です。
+```
+
+コマンドを承認する前に内容を読んでください。権限確認を省略するモードでエージェントを起動しないでください。
+
 ## 仕組み
 
 ガイドはサーバーを準備する順番に沿っています。リモート接続はステップ 3 で選ぶオプションで、同じ LAN 内では追加のネットワークツールは不要です。

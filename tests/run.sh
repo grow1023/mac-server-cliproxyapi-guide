@@ -16,7 +16,7 @@ if command -v shellcheck >/dev/null 2>&1; then
 else
   echo "SKIP[shellcheck]: not installed (CI installs it)"
 fi
-python3 -m py_compile tests/stub_server.py examples/clients/openai_client.py && ok py_compile || bad py_compile "python syntax"
+python3 -m py_compile tests/stub_server.py examples/clients/openai_client.py scripts/write-config.py && ok py_compile || bad py_compile "python syntax"
 
 # 2. check-proxy.sh behavior against a local stub
 TMP="$(mktemp -d)"; PIDS=""
@@ -66,11 +66,27 @@ assert keys and all(k.startswith("<") and k.endswith(">") for k in keys), "examp
 print("PASS[config]")
 PY
 
+# 3b. Agent handoff: write-config.py fills keys without printing them; CLAUDE.md and READMEs point to AGENTS.md
+KD="$TMP/keys"; mkdir -p "$KD"
+printf '%064d\n' 1 | tr 0 a > "$KD/client-1.key"; printf '%064d\n' 2 | tr 0 b > "$KD/client-2.key"
+k1="$(tr -d '\n' < "$KD/client-1.key")"; k2="$(tr -d '\n' < "$KD/client-2.key")"
+out="$(python3 scripts/write-config.py examples/config.server.yaml "$TMP/out.conf" 127.0.0.1 "$KD" 2>&1)"; rc=$?
+if [ "$rc" -ne 0 ]; then bad write-config "exit $rc: $out"
+elif case "$out" in *"$k1"*|*"$k2"*) true;; *) false;; esac; then bad write-config "key printed"
+elif grep -q '<client-' "$TMP/out.conf" || ! grep -q "$k1" "$TMP/out.conf" || ! grep -q '^  host: "127.0.0.1"' "$TMP/out.conf"; then bad write-config "placeholders or host not replaced"
+elif [ "$(stat -f %Lp "$TMP/out.conf" 2>/dev/null || stat -c %a "$TMP/out.conf")" != 600 ]; then bad write-config "config mode is not 600"
+else ok write-config; fi
+python3 scripts/write-config.py examples/config.server.yaml "$TMP/x.conf" 0.0.0.0 "$KD" >/dev/null 2>&1; [ $? -eq 2 ] && ok write-config.host || bad write-config.host "public host must exit 2"
+rm "$KD/client-2.key"
+python3 scripts/write-config.py examples/config.server.yaml "$TMP/y.conf" "" "$KD" >/dev/null 2>&1; [ $? -eq 1 ] && [ ! -e "$TMP/y.conf" ] && ok write-config.missing || bad write-config.missing "missing key must exit 1 without writing"
+[ "$(cat CLAUDE.md)" = "@AGENTS.md" ] && ok handoff.claude || bad handoff.claude "CLAUDE.md must import AGENTS.md"
+for r in README*.md; do grep -q '](AGENTS.md)' "$r" && grep -q 'codex' "$r" && grep -q 'claude' "$r" || bad handoff.readme "$r lacks the agent handoff section"; done
+
 # 4. Documentation: local links, en/ko parity, flags match upstream
 python3 - <<'PY' || RC=1
 import pathlib, re, sys
 root = pathlib.Path(".")
-docs = sorted(root.glob("README*.md")) + sorted(root.glob("docs/*.md"))
+docs = sorted(root.glob("README*.md")) + sorted(root.glob("docs/*.md")) + [root / "AGENTS.md"]
 errors = []
 for doc in docs:
     for target in re.findall(r"\]\(([^)#\s]+)(?:#[^)]*)?\)", doc.read_text()):

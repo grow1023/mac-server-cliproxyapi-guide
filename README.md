@@ -29,6 +29,31 @@ PROXY_URL=http://127.0.0.1:8317 PROXY_KEY=<client-key> ./scripts/check-proxy.sh
 
 The check prints PASS for the health endpoint, the rejected request without a key and the model list, then ALL CHECKS PASSED.
 
+## Hand it to Claude Code or Codex
+
+[AGENTS.md](AGENTS.md) turns this guide into steps for a coding agent. Codex reads it directly and Claude Code reads it through CLAUDE.md. The agent asks which role and access method you want, stops at steps only you can do (passwords, browser sign-in, System Settings) and never shows the keys. Open one of the agents in a clone of this repository:
+
+```sh
+git clone https://github.com/grow1023/mac-server-cliproxyapi-guide
+cd mac-server-cliproxyapi-guide
+claude    # Claude Code (CLAUDE.md -> AGENTS.md)
+codex     # Codex (AGENTS.md)
+```
+
+Then paste one prompt. Server Mac:
+
+```text
+Follow AGENTS.md and set up this Mac as the CLIProxyAPI server. Ask me for the access method first. Stop at every HUMAN step and wait for me. Never show the client keys. The work is done only when scripts/check-proxy.sh exits 0.
+```
+
+Client computer:
+
+```text
+Follow AGENTS.md and connect this computer to my CLIProxyAPI server as a client. Ask me for the server address. Configure only the tools I name, and back up each file first. The work is done only when scripts/check-proxy.sh exits 0.
+```
+
+Read each command before you approve it. Do not start the agent in a mode that skips permission prompts.
+
 ## How it works
 
 The guide follows the order in which you set up the server. Remote access is a separate choice in step 3; inside the LAN no extra network tool is needed.
