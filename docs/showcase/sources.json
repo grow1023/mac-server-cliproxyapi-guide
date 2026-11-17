@@ -87,7 +87,7 @@
       "path": "docs/guide.md",
       "lines": [
         226,
-        286
+        288
       ],
       "status": "documented"
     },
@@ -95,8 +95,8 @@
       "id": "ev-security",
       "path": "docs/guide.md",
       "lines": [
-        288,
-        295
+        290,
+        297
       ],
       "status": "documented"
     },

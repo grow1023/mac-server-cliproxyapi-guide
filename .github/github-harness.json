@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "profile": "public-full",
+  "intent": {
+    "visibility": "private",
+    "images": "required",
+    "languages": [
+      "en",
+      "ko",
+      "ja",
+      "zh"
+    ],
+    "release": "not_requested",
+    "description": "Run CLIProxyAPI on a Mac mini or Mac Studio and connect other computers and services",
+    "homepage": "",
+    "topics": [
+      "claude-code",
+      "cliproxyapi",
+      "codex",
+      "homelab",
+      "macos",
+      "tailscale"
+    ]
+  },
+  "approvals": {
+    "images": true,
+    "publish": false,
+    "release": false
+  },
+  "local": {
+    "artifacts": "pending",
+    "version": "pending"
+  },
+  "remote": {
+    "push": "pending",
+    "metadata": "pending",
+    "tag": "not_requested",
+    "release": "not_requested",
+    "verification": "pending"
+  },
+  "result": "incomplete"
+}

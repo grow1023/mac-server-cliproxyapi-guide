@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you reference this guide, please cite it as below."
+title: "Mac Server CLIProxyAPI Guide"
+abstract: "Step-by-step guide to running CLIProxyAPI on an always-on Mac mini or Mac Studio and connecting other computers and services."
+type: software
+authors:
+  - family-names: "Son"
+license: MIT

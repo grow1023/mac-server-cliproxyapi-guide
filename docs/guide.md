@@ -256,6 +256,8 @@ export CLIPROXY_API_KEY="<KEY>"
 codex
 ```
 
+The VibeProxy README (an app built on CLIProxyAPI) reports that with this explicit provider block, Codex's ChatGPT-account features such as Quick Chat can stop working, and that the cause is still under investigation ([automazeio/vibeproxy#544](https://github.com/automazeio/vibeproxy/issues/544)).
+
 ### OpenAI SDK and scripts
 
 ```python

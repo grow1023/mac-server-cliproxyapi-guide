@@ -256,6 +256,8 @@ export CLIPROXY_API_KEY="<KEY>"
 codex
 ```
 
+CLIProxyAPI 기반 앱인 VibeProxy의 README에 따르면, 이처럼 제공자를 명시하는 방식에서는 Quick Chat 같은 Codex의 ChatGPT 계정 기능이 동작하지 않을 수 있으며 원인은 아직 조사 중입니다([automazeio/vibeproxy#544](https://github.com/automazeio/vibeproxy/issues/544)).
+
 ### OpenAI SDK·스크립트
 
 ```python
