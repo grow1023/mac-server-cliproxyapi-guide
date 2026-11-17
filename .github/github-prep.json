@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "repoType": "docs",
-  "mode": "baseline",
-  "baselineCommit": null,
-  "reviewedHead": "04d0bfdc75c7adf1cd8ef3e192ba24d3031065f8",
+  "mode": "update",
+  "baselineCommit": "04d0bfdc75c7adf1cd8ef3e192ba24d3031065f8",
+  "reviewedHead": "38678947eafe4d307a556fdf6e979fe81d43a106",
   "references": [
     {
       "repo": "router-for-me/CLIProxyAPI",
@@ -29,7 +29,10 @@
     {
       "repo": "automazeio/vibeproxy",
       "commit": "e7f2d975ad9cd35998ef89945b11db99ebc5f8d6",
-      "inspected": ["README.md", "repository root listing"],
+      "inspected": [
+        "README.md",
+        "repository root listing"
+      ],
       "adopted": [
         "explicit Codex provider shape with wire_api = responses, plus its reported Quick Chat caveat with the issue link",
         "state the default bind address and what changes for LAN access"
@@ -40,7 +43,13 @@
     }
   ],
   "reproducibility": {
-    "prerequisites": ["bash", "python3", "curl", "shellcheck (optional locally, installed in CI)", "ruby or PyYAML for the config check"],
+    "prerequisites": [
+      "bash",
+      "python3",
+      "curl",
+      "shellcheck (optional locally, installed in CI)",
+      "ruby or PyYAML for the config check"
+    ],
     "install": {
       "command": "",
       "status": "not-applicable",
@@ -50,7 +59,7 @@
     "test": {
       "command": "bash tests/run.sh",
       "status": "verified",
-      "evidence": "local run 2026-11-17 on commit 04d0bfd: ALL TESTS PASSED, exit 0 (shellcheck, 6 check-proxy stub cases, config, docs links/parity/flags, privacy 46 files); fault injection (unknown flag, private IP, real key) produced 3 FAIL lines",
+      "evidence": "local run 2026-11-17 on commit 3867894: ALL TESTS PASSED, exit 0 (shellcheck, 6 check-proxy stub cases, config, docs links/parity/flags, privacy scan); fault injection (unknown flag, private IP, real key) produced 3 FAIL lines",
       "reason": ""
     },
     "guide-procedure": {
@@ -61,7 +70,10 @@
     }
   },
   "ci": {
-    "workflows": [".github/workflows/ci.yml", ".github/workflows/codeql.yml"],
+    "workflows": [
+      ".github/workflows/ci.yml",
+      ".github/workflows/codeql.yml"
+    ],
     "remote": "unverified",
     "runUrl": "",
     "runSha": ""
@@ -70,14 +82,31 @@
     "status": "present",
     "file": "LICENSE",
     "attribution": [
-      {"source": "router-for-me/CLIProxyAPI config.example.yaml (reduced excerpt in examples/config.server.yaml)", "license": "MIT", "notice": "NOTICE"}
+      {
+        "source": "router-for-me/CLIProxyAPI config.example.yaml (reduced excerpt in examples/config.server.yaml)",
+        "license": "MIT",
+        "notice": "NOTICE"
+      }
     ]
   },
-  "privacy": {"gaps": []},
-  "diffReview": null,
+  "privacy": {
+    "gaps": []
+  },
+  "diffReview": {
+    "since": "04d0bfdc75c7adf1cd8ef3e192ba24d3031065f8",
+    "files": [
+      "VERSION"
+    ],
+    "summary": "VERSION adds 0.1.0 to satisfy the publish contract; it matches the README version. No guide, script or workflow change. tests/run.sh re-run on this commit: exit 0."
+  },
   "readiness": {
-    "verified": ["reproducibility.test"],
-    "unverified": ["ci", "reproducibility.guide-procedure"],
+    "verified": [
+      "reproducibility.test"
+    ],
+    "unverified": [
+      "ci",
+      "reproducibility.guide-procedure"
+    ],
     "blocked": []
   },
   "notes": {
