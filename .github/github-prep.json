@@ -1,30 +1,67 @@
 {
   "schemaVersion": 1,
-  "repoType": "unknown",
+  "repoType": "docs",
   "mode": "baseline",
   "baselineCommit": null,
-  "reviewedHead": null,
-  "references": [],
+  "reviewedHead": "04d0bfdc75c7adf1cd8ef3e192ba24d3031065f8",
+  "references": [
+    {
+      "repo": "router-for-me/CLIProxyAPI",
+      "commit": "7df56074b252384d878ec4fca840552c6fb5236e",
+      "inspected": [
+        "README.md",
+        "config.example.yaml",
+        "cmd/server/main.go",
+        "internal/access/config_access/provider.go",
+        "internal/api/server_routes.go",
+        "internal/auth/antigravity/constants.go",
+        "examples/claude-code-codex/README.md"
+      ],
+      "adopted": [
+        "every command and configuration key is taken from this source; tests/upstream_flags.txt pins the login flags and the docs test rejects unknown flags",
+        "placeholder client keys only, mirroring the template comment to replace keys before use"
+      ],
+      "rejected": [
+        "sponsor and affiliate sections: not relevant to a setup guide",
+        "full 1,400-line template as the starting config: a reduced v8 file is easier to review"
+      ]
+    },
+    {
+      "repo": "automazeio/vibeproxy",
+      "commit": "e7f2d975ad9cd35998ef89945b11db99ebc5f8d6",
+      "inspected": ["README.md", "repository root listing"],
+      "adopted": [
+        "explicit Codex provider shape with wire_api = responses, plus its reported Quick Chat caveat with the issue link",
+        "state the default bind address and what changes for LAN access"
+      ],
+      "rejected": [
+        "menu bar app installation flow: this guide targets a headless always-on server"
+      ]
+    }
+  ],
   "reproducibility": {
-    "prerequisites": [],
+    "prerequisites": ["bash", "python3", "curl", "shellcheck (optional locally, installed in CI)", "ruby or PyYAML for the config check"],
     "install": {
       "command": "",
-      "status": "unknown",
+      "status": "not-applicable",
       "evidence": "",
-      "reason": ""
+      "reason": "documentation repository; readers clone it and run scripts in place"
     },
     "test": {
-      "command": "",
-      "status": "unknown",
-      "evidence": "",
+      "command": "bash tests/run.sh",
+      "status": "verified",
+      "evidence": "local run 2026-11-17 on commit 04d0bfd: ALL TESTS PASSED, exit 0 (shellcheck, 6 check-proxy stub cases, config, docs links/parity/flags, privacy 46 files); fault injection (unknown flag, private IP, real key) produced 3 FAIL lines",
       "reason": ""
+    },
+    "guide-procedure": {
+      "command": "brew install cliproxyapi && brew services start cliproxyapi",
+      "status": "unverified",
+      "evidence": "",
+      "reason": "not run on a real server; running the downloaded release binary was blocked in this session"
     }
   },
   "ci": {
-    "workflows": [
-      ".github/workflows/ci.yml",
-      ".github/workflows/codeql.yml"
-    ],
+    "workflows": [".github/workflows/ci.yml", ".github/workflows/codeql.yml"],
     "remote": "unverified",
     "runUrl": "",
     "runSha": ""
@@ -32,15 +69,19 @@
   "license": {
     "status": "present",
     "file": "LICENSE",
-    "attribution": []
+    "attribution": [
+      {"source": "router-for-me/CLIProxyAPI config.example.yaml (reduced excerpt in examples/config.server.yaml)", "license": "MIT", "notice": "NOTICE"}
+    ]
   },
-  "privacy": {
-    "gaps": []
-  },
+  "privacy": {"gaps": []},
   "diffReview": null,
   "readiness": {
-    "verified": [],
-    "unverified": [],
+    "verified": ["reproducibility.test"],
+    "unverified": ["ci", "reproducibility.guide-procedure"],
     "blocked": []
+  },
+  "notes": {
+    "license": "MIT was added by the harness template default (same as the owner's other harness repositories); the owner can change it before or after publication.",
+    "owner": "CODEOWNERS is intentionally empty until the publishing GitHub account is confirmed."
   }
 }
