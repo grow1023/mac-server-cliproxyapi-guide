@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "repoType": "docs",
   "mode": "update",
-  "baselineCommit": "04d0bfdc75c7adf1cd8ef3e192ba24d3031065f8",
-  "reviewedHead": "38678947eafe4d307a556fdf6e979fe81d43a106",
+  "baselineCommit": "38678947eafe4d307a556fdf6e979fe81d43a106",
+  "reviewedHead": "083a440ba7bcb6629cbad00892d86416934819d7",
   "references": [
     {
       "repo": "router-for-me/CLIProxyAPI",
@@ -59,7 +59,7 @@
     "test": {
       "command": "bash tests/run.sh",
       "status": "verified",
-      "evidence": "local run 2026-11-17 on commit 3867894: ALL TESTS PASSED, exit 0 (shellcheck, 6 check-proxy stub cases, config, docs links/parity/flags, privacy scan); fault injection (unknown flag, private IP, real key) produced 3 FAIL lines",
+      "evidence": "local run 2026-11-17 on commit 083a440: ALL TESTS PASSED, exit 0, incl. write-config (key non-disclosure for both keys, host allowlist, missing key) and handoff wiring; fault injection (key printed, README link removed) produced FAIL lines",
       "reason": ""
     },
     "guide-procedure": {
@@ -93,11 +93,18 @@
     "gaps": []
   },
   "diffReview": {
-    "since": "04d0bfdc75c7adf1cd8ef3e192ba24d3031065f8",
+    "since": "38678947eafe4d307a556fdf6e979fe81d43a106",
     "files": [
-      "VERSION"
+      "AGENTS.md",
+      "CLAUDE.md",
+      "README.ja.md",
+      "README.ko.md",
+      "README.md",
+      "README.zh.md",
+      "scripts/write-config.py",
+      "tests/run.sh"
     ],
-    "summary": "VERSION adds 0.1.0 to satisfy the publish contract; it matches the README version. No guide, script or workflow change. tests/run.sh re-run on this commit: exit 0."
+    "summary": "Adds AGENTS.md (agent procedure, HUMAN stop points for sudo, OAuth sign-in, System Settings and Tailscale), CLAUDE.md importing it, scripts/write-config.py (fills keys from mode-600 files without printing, host allowlist), a handoff section with copy-paste prompts in all four READMEs, and tests for these. Not checked: a full Claude Code or Codex session running the procedure end to end."
   },
   "readiness": {
     "verified": [
