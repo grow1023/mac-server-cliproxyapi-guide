@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "evidence": [
+    {
+      "id": "ev-scope",
+      "path": "docs/guide.md",
+      "lines": [
+        7,
+        7
+      ],
+      "status": "documented"
+    },
+    {
+      "id": "ev-architecture",
+      "path": "docs/guide.md",
+      "lines": [
+        25,
+        46
+      ],
+      "status": "documented"
+    },
+    {
+      "id": "ev-awake",
+      "path": "docs/guide.md",
+      "lines": [
+        58,
+        72
+      ],
+      "status": "documented"
+    },
+    {
+      "id": "ev-install",
+      "path": "docs/guide.md",
+      "lines": [
+        74,
+        101
+      ],
+      "status": "code-verified"
+    },
+    {
+      "id": "ev-config",
+      "path": "docs/guide.md",
+      "lines": [
+        103,
+        142
+      ],
+      "status": "code-verified"
+    },
+    {
+      "id": "ev-login",
+      "path": "docs/guide.md",
+      "lines": [
+        144,
+        172
+      ],
+      "status": "code-verified"
+    },
+    {
+      "id": "ev-service",
+      "path": "docs/guide.md",
+      "lines": [
+        174,
+        192
+      ],
+      "status": "code-verified"
+    },
+    {
+      "id": "ev-check",
+      "path": "docs/guide.md",
+      "lines": [
+        194,
+        210
+      ],
+      "status": "documented"
+    },
+    {
+      "id": "ev-access",
+      "path": "docs/guide.md",
+      "lines": [
+        212,
+        224
+      ],
+      "status": "documented"
+    },
+    {
+      "id": "ev-clients",
+      "path": "docs/guide.md",
+      "lines": [
+        226,
+        286
+      ],
+      "status": "documented"
+    },
+    {
+      "id": "ev-security",
+      "path": "docs/guide.md",
+      "lines": [
+        288,
+        295
+      ],
+      "status": "documented"
+    },
+    {
+      "id": "ev-example-config",
+      "path": "examples/config.server.yaml",
+      "lines": [
+        1,
+        29
+      ],
+      "status": "code-verified"
+    },
+    {
+      "id": "ev-check-script",
+      "path": "scripts/check-proxy.sh",
+      "lines": [
+        1,
+        52
+      ],
+      "status": "code-verified"
+    },
+    {
+      "id": "ev-tests",
+      "path": "tests/run.sh",
+      "lines": [
+        1,
+        134
+      ],
+      "status": "execution-verified"
+    }
+  ],
+  "claims": {
+    "one-server": [
+      "ev-architecture",
+      "ev-clients"
+    ],
+    "private-access": [
+      "ev-access",
+      "ev-security"
+    ],
+    "checkable": [
+      "ev-check-script",
+      "ev-check"
+    ],
+    "flow-install": [
+      "ev-awake",
+      "ev-install",
+      "ev-config",
+      "ev-example-config"
+    ],
+    "flow-run": [
+      "ev-login",
+      "ev-service",
+      "ev-access"
+    ],
+    "flow-connect": [
+      "ev-clients",
+      "ev-check"
+    ],
+    "home-lab": [
+      "ev-access"
+    ],
+    "away": [
+      "ev-access",
+      "ev-security"
+    ],
+    "automation": [
+      "ev-clients"
+    ],
+    "not-rerun": [
+      "ev-scope"
+    ],
+    "versions": [
+      "ev-scope",
+      "ev-clients"
+    ],
+    "terms": [
+      "ev-security"
+    ],
+    "tokens": [
+      "ev-config",
+      "ev-security"
+    ],
+    "repo-tests": [
+      "ev-tests"
+    ],
+    "source-checked": [
+      "ev-install",
+      "ev-login",
+      "ev-config"
+    ],
+    "live-server": [
+      "ev-scope"
+    ],
+    "quickstart": [
+      "ev-install",
+      "ev-login",
+      "ev-service",
+      "ev-check-script"
+    ]
+  }
+}

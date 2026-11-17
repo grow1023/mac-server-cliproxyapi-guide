@@ -1,0 +1,29 @@
+# Minimal CLIProxyAPI v8 server configuration for a home/office Mac server.
+# Derived from config.example.yaml of router-for-me/CLIProxyAPI (MIT), commit 7df5607.
+# Replace every <...> placeholder before use. Never commit real keys.
+config-version: 8
+
+server:
+  # "" binds all interfaces (LAN / Tailscale direct access).
+  # Use "127.0.0.1" with Tailscale Serve or an SSH tunnel.
+  host: ""
+  port: 8317
+
+management:
+  allow-remote: false
+  # Empty disables the Management API.
+  secret-key: ""
+
+access:
+  # Client keys (not provider keys). Generate each with: openssl rand -hex 32
+  api-keys:
+    - "<client-1-key>"
+    - "<client-2-key>"
+
+oauth:
+  auth-dir: "~/.cli-proxy-api"
+
+observability:
+  logs:
+    logging-to-file: false
+    logs-max-total-size-mb: 200

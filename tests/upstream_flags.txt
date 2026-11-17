@@ -1,0 +1,13 @@
+# Login flags defined in router-for-me/CLIProxyAPI cmd/server/main.go at 7df5607.
+claude-login
+codex-login
+codex-device-login
+antigravity-login
+kimi-login
+kimi-ai-login
+xai-login
+devin-login
+meta-login
+no-browser
+oauth-callback-port
+config
